@@ -1,0 +1,131 @@
+<p id="notice"><%= notice %></p>
+<h1 align="center">News Feed</h1>
+
+<br>  
+
+              <div class="inputpost">
+                <div class="col-xs-8 col-xs-offset-2">
+                  <div class="well well-lg">
+                     
+                    <%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+    <div class="field">
+      <%=f.label :image %>
+      <%= f.file_field :avatar %>
+    </div>
+
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+                  </div>
+                </div>
+              </div>
+
+             <div class="row-right">
+                <div class="col-xs-8 col-xs-offset-2">
+                  <div class="well well-lg">
+                      <h4 align="center">Friendlist</h3>
+                      <%current_user.friends.each do |f| %>
+                        <ul class="friendlist">
+                          <%= image_tag f.profile.avatar.url, size:"50x50" %>  <%= link_to f.profile.firstname + " " + f.profile.lastname , profile_path(f.profile.id) %>
+                        </ul>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+
+          
+    <%# f.posts.each do |p| %>
+    <% @posts = Post.where(user_id: current_user.all_user_ids).order("created_at desc") %>
+    <%@posts.each do |post| %>
+
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <div class="well well-lg">
+             
+           
+
+              <div class="user-name">
+                <h4 align="left">
+                
+                <a href="<%= "#{profile_path(post.user.profile)}" %>">
+                  <%= image_tag post.user.profile.avatar.url, size:"50x50" %> <%= post.user.profile.firstname + " " + post.user.profile.lastname %>
+                </a>
+                </h4>
+              
+                 <h5 align="center"> <%=	post.description  %> </h5>
+              <% if post.avatar.present? %>
+                  <h4 align="center"><%= image_tag post.avatar.url, size:"300x300" %></h4>
+              <%else%>
+              <% end %>
+
+                 <h5 align="center">Created at: <%=	time_ago_in_words(post.created_at) %> ago</h5>
+          
+              </div>
+                  <hr>
+
+              <div class="post-action-<%=post.id%>" align="center">
+                        
+                        <% if current_user.liked? post %>
+                            <td>
+                             <%= link_to "unLike", {:controller => 'post', :id => post , :action =>'unlike'}, class: "btn btn-danger btn-xs" %>
+ 
+                            </td>
+                        <% else %>
+                            <td>
+                                <%= link_to "Like", {:controller => 'post', :id => post , :action =>'like'}, class: "btn btn-danger btn-xs" %>
+
+ 
+                            </td>
+                        <% end %>
+                        <span id="votes-count" data-id="<%= post.id %>"%>like:<%= post.get_likes.size() %></span>
+                       <hr>
+
+                    <div id="comment-action">
+                      <%= link_to "View Comments", "#post_comments_#{post.id}" %>
+                      
+                       <section class="comments-section" id="post_comments_<%= post.id %>" >
+                      <br>
+                        <div id="comments">
+                          <%= render 'commenters/newsfeedcomment', obj: post  %>
+                        </div>
+                        <% if current_user == post.user %>
+                          <h6 align="right"><%= link_to 'Edit', edit_post_path(post) %></h6>
+                          <h6 align="right"><%= link_to 'Delete', { :id => post ,:controller => 'posts',:action => 'destroy'} %></h6>
+                        <% end %>
+                      
+                    </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+
+
+
+
+
+
+
+

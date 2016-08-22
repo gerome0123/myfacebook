@@ -1,0 +1,12 @@
+<% obj.commenters.each do |c| %>
+	<li class = 'comments'>
+        <br><%= image_tag c.user.profile.avatar.url, size:"50x50" %> 
+        <a href="<%= "#{profile_path(c.user.profile)}" %>"><%= c.user.profile.firstname + " " + c.user.profile.lastname %></a> : <%= c.comment %>
+        <br><%=	time_ago_in_words(c.created_at) %> ago
+        <% if current_user == c.user %>
+            <%= link_to "Delete comment", [c.post, c], method: :delete %>
+            <%= link_to "Edit comment", edit_post_commenter_path(c.post, c) %>
+        <% end %>
+	</li>
+<% end %>
+<%= render 'commenters/commentform', obj: obj %>

@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+
+
+  <%= image_tag @profile.avatar.url, size: "150x150" %>
+
+
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @profile.firstname   if @profile.firstname.present?%>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @profile.lastname if @profile.lastname.present? %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>  
+
+  <%= @profile.birthday.to_formatted_s(:long) if @profile.birthday.present?   %>
+</p>
+
+<p>
+  <strong>About:</strong>
+  <%= @profile.about  if @profile.about.present? %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @profile.gender  if @profile.gender.present? %>
+</p>
+
+<p> <%= link_to current_user.friends_with?(@profile.user) || current_user.id == @profile.user_id ? " " : "Add Friend" , {:controller => 'profiles',:action => 'adduser', :id => @profile.user} %> </p>
+
+<p><%= link_to current_user.friends_with?(@profile.user) ? " Unfriend " : " ", {:controller => 'users', :action => 'unfriend_user', :id => @profile.user} %></p>
+
+
+<p>
+  <% if current_user == @profile.user %>
+<%= link_to 'Edit Profile', edit_profile_path(@profile) %> <br>
+<%= link_to 'Change Password', {:controller => 'users', :action => 'edit'} %>
+    <% end %>
+<p>
+  <% @profile.user.posts.order("created_at desc").each do |p| %>
+
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="well well-lg">
+            <div class="user-name">
+              <h4 align="left"> <%= image_tag @profile.avatar.url, size:"50x50" %>  <%= @profile.firstname %></h4>
+            </div>
+             <div class="user-post">
+                <h4 align="center">  <%= p.description %></h4>
+              <% if p.avatar.present? %>
+                <h4 align="center"><%= image_tag p.avatar.url, size:"300x300" %></h4>
+              <%else%>
+                  <h4 align="center"><%#= image_tag p.avatar.url, size:"300x300" %></h4>
+              <% end %>
+
+
+                 <h4 align="center">Created at:  <%= time_ago_in_words(p.created_at) %></h4>
+              </div>
+              <hr>
+            <div class="student-action" align="center">
+             
+               <td>
+               <%= link_to 'like', {:controller => 'post', :id => p , :action =>'like'}, class: "btn btn-xs btn-danger" %>
+               </td>
+               <td>Likes:<%= p.votes_for.size%></td>
+            </div>
+          </div>
+        </div>
+        </div>
+  <% end %>
+
+      <%# end %>
+
+<%#= link_to 'Edit', edit_profile_path(@profile) %> 
+<%#= link_to 'Back', profiles_path %>

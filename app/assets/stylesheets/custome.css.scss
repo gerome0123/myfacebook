@@ -1,0 +1,165 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.email{
+  margin-top: 13px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.password{
+  margin-top: 13px;
+  margin-left: 5px;
+}
+.emaillabel{
+  margin-top: 15px;
+
+  color: white;
+  font-size: 17px;
+}
+
+.passwordlabel{
+  margin-top: 15px;
+  color: white;
+  font-size: 17px;
+}
+.sumbitlogin{
+  margin-top: 13px;
+  margin-left: 5px;
+}
+.forgetpass{
+  margin-top: -14px;
+  margin-bottom: -32px;
+}
+
+.rembox{
+  margin-top: 13px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.remlabel{
+  margin-top: 13px;
+  margin-right: 5px;
+  color: white;
+}
+
+.navbar-nav{
+  float:left;
+}
+
+.fnln{
+  list-style-type: none ;
+}
+
+.mob{
+  width: 34%;
+  padding: 5px 4px;
+}
+
+.fn, .ln{
+  width: 16%;
+  padding: 5px 4px;
+}
+
+.ea{
+  width: 34%;
+  padding: 5px 4px;
+}
+
+.pass, .compass{
+  width: 34%;
+  padding: 5px 4px;
+}
+.wrap{
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: -21px;
+    padding-bottom: 10%;
+}
+.logo{
+  float: left;
+  margin-left: 72%;
+  margin-top: -18%;
+}
+
+.navbar-nav > li > .dropdown-menu{
+  padding-right: 20%;
+}
+.dropdown-menu{
+
+    width: 250%
+  }
+
+.badge{
+  background-color: red;
+}
+
+li.search {
+    margin-top: 13px;
+}
+
+input#search {
+    border-radius: 25px;
+}
+
+.well.size {
+    margin-right: 65%;
+}
+
+a.viewprofile {
+  float: right;
+}
+
+li.decline{
+  float: right;
+}
+li.accept{
+  float: right;
+  margin-left: 4px;
+}
+
+
+
+li.user {
+    margin-left: 5px;
+}
+
+
+.row-right .col-xs-8.col-xs-offset-2 {
+    float: right;
+    width: 28%;
+    margin-left: 0%;
+    }
+
+    .col-xs-offset-2 {
+    margin-left: 17.666667%;
+}
+
+.col-xs-8 {
+    width: 84.666667%;
+}
+
+.row-right .well-lg {
+    padding: 21px;
+    border-radius: 6px;
+    margin-bottom: 0%;
+    padding: initial;
+}
+
+ul.friendlist {
+    margin: 9px;
+}
+.row{
+      width: 72%;
+    float: left;
+}
+.inputpost .col-xs-8.col-xs-offset-2{
+  margin-left: 14.666667%;
+  width: 58%;
+  margin-left: 158px;
+  padding: 0 0 0 0;
+
+}
+
+.row-right{
+  position: relative;
+}

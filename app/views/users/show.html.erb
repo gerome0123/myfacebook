@@ -1,0 +1,7 @@
+<h1>All User</h1>
+
+<% @users.each do |u| %>
+  <ul>
+    <li><%= link_to "#{u.profile.firstname + " " + u.profile.lastname}", profile_path(u.profile) %> <%= link_to u.id == current_user.id || current_user.friends_with?(u) ? " ":"/Add Friend" , { :controller => 'users', :action => 'adduser', :id => u} %></li>
+  </ul>
+<% end %>

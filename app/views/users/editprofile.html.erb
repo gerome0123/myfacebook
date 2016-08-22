@@ -1,0 +1,35 @@
+<h1>Update Profile</h1>
+
+
+<%= form_for @user, url: {:controller => :users, :action => :updateprofile} do |f| %>
+
+    <div class="field">
+      <%= f.label :image %></label>
+      <%= f.file_field :avatar %>
+    </div>
+
+    <div class="field">
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :mobile %>
+      <%= f.number_field :mobile %>
+    </div>
+
+    <div class="field">
+      <%= f.label :birthday %>
+      <%= f.date_field :birthday %>
+    </div>
+
+
+    <%= f.submit %>
+
+
+<% end %>

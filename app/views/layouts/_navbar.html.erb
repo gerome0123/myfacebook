@@ -1,0 +1,41 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand"> <%=link_to "Welcome #{current_user.profile.firstname }", profile_path(current_user.profile), class:"navbar-brand" %></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%=	 link_to 'Home', "/" %></a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Friend Request
+        <% if current_user.requested_friends.count == 0 %>
+            <%= current_user.requested_friends.count  %> 
+        <% else %>
+            <span class = "badge"><%= current_user.requested_friends.count  %></span>
+          <% end %>
+
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <nav>
+            <% current_user.requested_friends.each do |f|  %>
+            <li class="user"> <%= image_tag f.profile.avatar.url, size:"40x40" %> <%= link_to	f.profile.firstname + " " + f.profile.lastname, profile_path(f.profile) %></li>
+            <li class="accept"><%=link_to( "Accept", {:controller => 'users', :action => 'accept_user', :id => f}, class:  "btn btn-default") %></li>
+            <li class="decline"> <%=link_to( "Decline", {:controller => 'users', :action => 'reject_user', :id => f}, class: "btn btn-primary") %></li>
+            <% end %>
+          </nav>
+        </ul>
+      </li>
+      <li class="search">
+        <%= form_tag(profiles_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+          <%= submit_tag "Search" %>
+        <% end %>
+      </li>
+      <li class="logout"><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
+    </ul>
+    
+  </div>
+</nav>
+
+
+
+

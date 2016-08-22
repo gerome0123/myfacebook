@@ -1,0 +1,5 @@
+<%=	 form_for([obj, obj.commenters.build], remote: true) do |f| %>
+    <%= f.text_area :comment, id: "comment-#{obj.id}"  %><br>
+    <%= f.submit " Comment" %>
+
+<% end %>

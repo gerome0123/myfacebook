@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Result</h1>
+<br>
+<% @profile.each do |profile| %>
+  
+<div class="well size">
+ <tr>
+    <td><%= image_tag profile.avatar.url, size:"30x30" %> <%= profile.firstname + " " + profile.lastname %></td>
+    <td><%= link_to 'View', profile, class: "viewprofile" %></td>
+</tr>
+</div>
+
+<% end %>

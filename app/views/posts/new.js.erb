@@ -1,0 +1,5 @@
+$('#new_post').hide().after('<%= j render("form") %>');
+
+("#new_post").html("<%= escape_javascript(render('form', post: @post )) %>")
+
+$("#subscribe_button").html("<%= escape_javascript(render(partial: 'subscriptions/unsubscribe', locals: { group: @group } )) %>") 

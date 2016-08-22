@@ -1,0 +1,7 @@
+<h1>Friends</h1>
+
+<%current_user.friends.each do |f| %>
+<ul>
+  <%= link_to f.profile.firstname + " " + f.profile.lastname , profile_path(f.profile.id) %> /<%= link_to 'Unfriend', {:controller => 'users', :action => 'unfriend_user', :id => f} %>
+</ul>
+<% end %>

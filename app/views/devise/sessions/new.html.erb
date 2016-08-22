@@ -1,0 +1,26 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">HandBook</a>
+    </div>
+        <ul class="nav navbar-nav">
+         <li class="emaillabel"><%= f.label :email %></li>
+         <li><%= f.email_field :email, autofocus: true, class: "email"%></li>
+         <li class="passwordlabel"><%= f.label :password %></li>
+         <li><%= f.password_field :password, autocomplete: "off", class: "password" %><br> <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+               <%#= link_to "Forgot your password?", new_password_path(resource_name), class:"forgetpass" %><br />
+           <% end -%></li>
+         <li class="sumbitlogin"><%= f.submit "Log in" %></li>
+          <% if devise_mapping.rememberable? -%>
+         <li class="rembox"><%= f.check_box :remember_me %></li>
+         <li class="remlabel"> <%= f.label :remember_me%></li>
+           <% end -%>
+        </ul>
+  </div>
+</nav>
+
+<% end %>
+
+<%=render 'layouts/signup' %>

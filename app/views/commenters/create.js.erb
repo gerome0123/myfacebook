@@ -1,0 +1,12 @@
+var content = "<%= j render(:partial => 'commenters/commentlist', obj: @comment) %>";
+
+var post = $("#post_comments_<%= @comment.post_id %>");
+var last_comment = post.find('#comments > li:last');
+if (last_comment.length > 0) {
+	last_comment.after(content);
+} else { 
+	var comments = post.find('#comments');
+	comments.prepend(content)			
+}
+$('#comment-<%= @comment.post_id %>').val("");
+$('#comment-<%= @comment.post_id %>').focus();
